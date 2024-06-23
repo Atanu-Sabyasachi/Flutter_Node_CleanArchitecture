@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_node_practice/core/constants/custom_button.dart';
 import 'package:flutter_node_practice/core/constants/custom_colors.dart';
+import 'package:flutter_node_practice/features/authentication/presentation/pages/signup_page.dart';
 import 'package:flutter_node_practice/features/authentication/presentation/widgets/auth_form_fields.dart';
 
 class LoginPage extends StatefulWidget {
@@ -81,7 +82,12 @@ class _LoginPageState extends State<LoginPage> {
                 const Text("Don't have an account ?"),
                 const SizedBox(width: 5),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignUp()),
+                      );
+                    },
                     child: const Text(
                       "Sign Up",
                       style: TextStyle(
