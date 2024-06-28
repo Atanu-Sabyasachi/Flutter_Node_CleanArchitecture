@@ -67,6 +67,7 @@ class DioNetworkServiceImpl implements DioNetworkService {
   dynamic _handleResponse(Response response) {
     switch (response.statusCode) {
       case 200:
+        return response.data;
       case 201:
         return response.data;
       case 400:
