@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_node_practice/core/constants/custom_colors.dart';
 import 'package:flutter_node_practice/features/authentication/presentation/bloc/auth/auth_bloc.dart';
 import 'package:flutter_node_practice/features/authentication/presentation/pages/login_page.dart';
 import 'package:flutter_node_practice/init_dependencies.dart';
@@ -49,6 +50,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "Montserrat",
+        colorScheme: const ColorScheme.dark(
+          background: Color.fromARGB(255, 3, 1, 30),
+        ),
       ),
       home: const LoginPage(),
     );

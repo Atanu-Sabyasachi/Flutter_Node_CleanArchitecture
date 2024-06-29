@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_node_practice/core/constants/custom_button.dart';
 import 'package:flutter_node_practice/core/constants/custom_colors.dart';
@@ -17,87 +19,111 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: CustomColor.secondaryColor,
+      body: Stack(
+        children: [
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/login_background.jpg"),
+                fit: BoxFit.cover,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Login",
-                      style: TextStyle(
-                        color: CustomColor.primaryColor,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+            ),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 10,
+                      sigmaY: 10,
+                    ),
+                    child: Container(
+                      height: 400,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: CustomColor.white.withOpacity(.3),
                       ),
-                    ),
-                    AuthFormField(
-                      title: 'Email',
-                      hintText: 'email',
-                      isRequired: true,
-                      validator: (email) {
-                        return null;
-                      },
-                      controller: _emailController,
-                    ),
-                    const SizedBox(height: 30),
-                    AuthFormField(
-                      title: 'Password',
-                      hintText: 'password',
-                      isRequired: true,
-                      validator: (email) {
-                        return null;
-                      },
-                      controller: _passwordController,
-                    ),
-                    const SizedBox(height: 30),
-                    CustomButton(
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          color: CustomColor.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Login",
+                              style: TextStyle(
+                                color: CustomColor.primaryColor,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            AuthFormField(
+                              title: 'Email',
+                              hintText: 'email',
+                              isRequired: true,
+                              validator: (email) {
+                                return null;
+                              },
+                              controller: _emailController,
+                            ),
+                            const SizedBox(height: 30),
+                            AuthFormField(
+                              title: 'Password',
+                              hintText: 'password',
+                              isRequired: true,
+                              validator: (email) {
+                                return null;
+                              },
+                              controller: _passwordController,
+                            ),
+                            const SizedBox(height: 30),
+                            CustomButton(
+                              child: const Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: CustomColor.white,
+                                ),
+                              ),
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
                       ),
-                      onPressed: () {},
                     ),
+                  ),
+                ),
+                const SizedBox(height: 100),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Don't have an account ?"),
+                    const SizedBox(width: 5),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignUp()),
+                          );
+                        },
+                        child: const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              color: CustomColor.actionColor,
+                              fontWeight: FontWeight.bold),
+                        ))
                   ],
                 ),
-              ),
-            ),
-            const SizedBox(height: 100),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Don't have an account ?"),
-                const SizedBox(width: 5),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SignUp()),
-                      );
-                    },
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          color: CustomColor.actionColor,
-                          fontWeight: FontWeight.bold),
-                    ))
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
